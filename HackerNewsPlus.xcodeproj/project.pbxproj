@@ -16,6 +16,7 @@
 		903FC2651B082B51004E4750 /* HNPMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2641B082B51004E4750 /* HNPMainTableViewController.m */; };
 		903FC2691B082C89004E4750 /* HNPStoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2671B082C89004E4750 /* HNPStoryTableViewCell.m */; };
 		903FC26A1B082C89004E4750 /* HNPStoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903FC2681B082C89004E4750 /* HNPStoryTableViewCell.xib */; };
+		909F57471B09008F005984BB /* HNPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 909F57461B09008F005984BB /* HNPItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		903FC2661B082C89004E4750 /* HNPStoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPStoryTableViewCell.h; path = Controllers/HNPStoryTableViewCell.h; sourceTree = "<group>"; };
 		903FC2671B082C89004E4750 /* HNPStoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPStoryTableViewCell.m; path = Controllers/HNPStoryTableViewCell.m; sourceTree = "<group>"; };
 		903FC2681B082C89004E4750 /* HNPStoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HNPStoryTableViewCell.xib; path = Controllers/HNPStoryTableViewCell.xib; sourceTree = "<group>"; };
+		909F57451B09008F005984BB /* HNPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPItem.h; path = Model/HNPItem.h; sourceTree = "<group>"; };
+		909F57461B09008F005984BB /* HNPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPItem.m; path = Model/HNPItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 		903FC2361B082837004E4750 /* HackerNewsPlus */ = {
 			isa = PBXGroup;
 			children = (
+				909F57441B090050005984BB /* Model */,
 				903FC2621B082B06004E4750 /* Controllers */,
 				903FC25D1B0829CE004E4750 /* Views */,
 				903FC23B1B082837004E4750 /* AppDelegate.h */,
@@ -141,6 +145,15 @@
 				903FC2671B082C89004E4750 /* HNPStoryTableViewCell.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		909F57441B090050005984BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				909F57451B09008F005984BB /* HNPItem.h */,
+				909F57461B09008F005984BB /* HNPItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +260,7 @@
 				903FC2691B082C89004E4750 /* HNPStoryTableViewCell.m in Sources */,
 				903FC23D1B082837004E4750 /* AppDelegate.m in Sources */,
 				903FC2651B082B51004E4750 /* HNPMainTableViewController.m in Sources */,
+				909F57471B09008F005984BB /* HNPItem.m in Sources */,
 				903FC23A1B082837004E4750 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +458,7 @@
 				903FC2591B082837004E4750 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		903FC25A1B082837004E4750 /* Build configuration list for PBXNativeTarget "HackerNewsPlusTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +467,7 @@
 				903FC25C1B082837004E4750 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
