@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  HNPMainTableViewController.h
 //  HackerNewsPlus
 //
 //  Created by Aseem Kohli on 5/16/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface HNPMainTableViewController : UITableViewController
 
 @end
-

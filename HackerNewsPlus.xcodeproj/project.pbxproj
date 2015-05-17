@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		903FC23A1B082837004E4750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2391B082837004E4750 /* main.m */; };
 		903FC23D1B082837004E4750 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC23C1B082837004E4750 /* AppDelegate.m */; };
-		903FC2401B082837004E4750 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC23F1B082837004E4750 /* ViewController.m */; };
 		903FC2431B082837004E4750 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 903FC2411B082837004E4750 /* Main.storyboard */; };
 		903FC2451B082837004E4750 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 903FC2441B082837004E4750 /* Images.xcassets */; };
 		903FC2481B082837004E4750 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903FC2461B082837004E4750 /* LaunchScreen.xib */; };
 		903FC2541B082837004E4750 /* HackerNewsPlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2531B082837004E4750 /* HackerNewsPlusTests.m */; };
+		903FC2651B082B51004E4750 /* HNPMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2641B082B51004E4750 /* HNPMainTableViewController.m */; };
+		903FC2691B082C89004E4750 /* HNPStoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2671B082C89004E4750 /* HNPStoryTableViewCell.m */; };
+		903FC26A1B082C89004E4750 /* HNPStoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 903FC2681B082C89004E4750 /* HNPStoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +34,17 @@
 		903FC2391B082837004E4750 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		903FC23B1B082837004E4750 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		903FC23C1B082837004E4750 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		903FC23E1B082837004E4750 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		903FC23F1B082837004E4750 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		903FC2421B082837004E4750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		903FC2441B082837004E4750 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		903FC2471B082837004E4750 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		903FC24D1B082837004E4750 /* HackerNewsPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		903FC2521B082837004E4750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		903FC2531B082837004E4750 /* HackerNewsPlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerNewsPlusTests.m; sourceTree = "<group>"; };
+		903FC2631B082B51004E4750 /* HNPMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPMainTableViewController.h; path = Controllers/HNPMainTableViewController.h; sourceTree = "<group>"; };
+		903FC2641B082B51004E4750 /* HNPMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPMainTableViewController.m; path = Controllers/HNPMainTableViewController.m; sourceTree = "<group>"; };
+		903FC2661B082C89004E4750 /* HNPStoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPStoryTableViewCell.h; path = Controllers/HNPStoryTableViewCell.h; sourceTree = "<group>"; };
+		903FC2671B082C89004E4750 /* HNPStoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPStoryTableViewCell.m; path = Controllers/HNPStoryTableViewCell.m; sourceTree = "<group>"; };
+		903FC2681B082C89004E4750 /* HNPStoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HNPStoryTableViewCell.xib; path = Controllers/HNPStoryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +86,10 @@
 		903FC2361B082837004E4750 /* HackerNewsPlus */ = {
 			isa = PBXGroup;
 			children = (
+				903FC2621B082B06004E4750 /* Controllers */,
+				903FC25D1B0829CE004E4750 /* Views */,
 				903FC23B1B082837004E4750 /* AppDelegate.h */,
 				903FC23C1B082837004E4750 /* AppDelegate.m */,
-				903FC23E1B082837004E4750 /* ViewController.h */,
-				903FC23F1B082837004E4750 /* ViewController.m */,
-				903FC2411B082837004E4750 /* Main.storyboard */,
-				903FC2441B082837004E4750 /* Images.xcassets */,
-				903FC2461B082837004E4750 /* LaunchScreen.xib */,
 				903FC2371B082837004E4750 /* Supporting Files */,
 			);
 			path = HackerNewsPlus;
@@ -117,6 +119,28 @@
 				903FC2521B082837004E4750 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		903FC25D1B0829CE004E4750 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				903FC2681B082C89004E4750 /* HNPStoryTableViewCell.xib */,
+				903FC2461B082837004E4750 /* LaunchScreen.xib */,
+				903FC2441B082837004E4750 /* Images.xcassets */,
+				903FC2411B082837004E4750 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		903FC2621B082B06004E4750 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				903FC2631B082B51004E4750 /* HNPMainTableViewController.h */,
+				903FC2641B082B51004E4750 /* HNPMainTableViewController.m */,
+				903FC2661B082C89004E4750 /* HNPStoryTableViewCell.h */,
+				903FC2671B082C89004E4750 /* HNPStoryTableViewCell.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +226,7 @@
 				903FC2431B082837004E4750 /* Main.storyboard in Resources */,
 				903FC2481B082837004E4750 /* LaunchScreen.xib in Resources */,
 				903FC2451B082837004E4750 /* Images.xcassets in Resources */,
+				903FC26A1B082C89004E4750 /* HNPStoryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,8 +244,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				903FC2401B082837004E4750 /* ViewController.m in Sources */,
+				903FC2691B082C89004E4750 /* HNPStoryTableViewCell.m in Sources */,
 				903FC23D1B082837004E4750 /* AppDelegate.m in Sources */,
+				903FC2651B082B51004E4750 /* HNPMainTableViewController.m in Sources */,
 				903FC23A1B082837004E4750 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,7 +325,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -337,7 +363,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
