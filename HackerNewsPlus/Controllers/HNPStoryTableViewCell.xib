@@ -34,9 +34,9 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="headLineLabel" destination="6lV-5a-oS2" id="8b2-Ti-htt"/>
                 <outlet property="numCommentsLabel" destination="9bb-lk-Kaq" id="PtU-1Z-POh"/>
                 <outlet property="scoreLabel" destination="mBP-Cs-b2f" id="lgb-W8-F9K"/>
+                <outlet property="titleLabel" destination="6lV-5a-oS2" id="gRn-Nv-Sds"/>
             </connections>
             <point key="canvasLocation" x="532" y="507.5"/>
         </tableViewCell>

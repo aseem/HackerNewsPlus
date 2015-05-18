@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSONModel/JSONModel.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - HPNItemType Enum
@@ -23,7 +24,7 @@ typedef enum HNPItemType
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Class Interface
 
-@interface HNPItem : NSObject
+@interface HNPItem : JSONModel
 
 ////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public Properties
@@ -77,7 +78,7 @@ typedef enum HNPItemType
 /**
  *  The URL of the story.
  */
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSURL *url;
 
 /**
  *  The story's score, or the votes for a pollopt
