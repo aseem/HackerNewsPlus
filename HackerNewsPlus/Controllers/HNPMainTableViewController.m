@@ -8,6 +8,7 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import "HNPMainTableViewController.h"
+#import "HNPNetworkManager.h"
 #import "HNPStoryTableViewCell.h"
 
 typedef void (^completion_t)(id result, NSError *error);
@@ -33,8 +34,9 @@ typedef void (^completion_t)(id result, NSError *error);
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
-    [self updateTopStoriesWithCompletion:^(id result, NSError *error)
+    [[HNPNetworkManager sharedManager] updateTopStoriesWithCompletion:^(id result, NSError *error)
      {
+         self.topStories = (NSMutableArray *)result;
          dispatch_async(dispatch_get_main_queue(), ^{
              [spinner stopAnimating];
              [self.tableView reloadData];
@@ -47,67 +49,6 @@ typedef void (^completion_t)(id result, NSError *error);
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)updateTopStoriesWithCompletion:(completion_t)completionHandler
-{
-    NSString *hnUrlString = @"https://hacker-news.firebaseio.com/v0/topstories.json";
-    NSURL *url = [NSURL URLWithString:hnUrlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        [self setTopStoryIds:[(NSArray *)responseObject subarrayWithRange:NSMakeRange(0, 30)]];
-        self.storyIdEnum = [self.topStoryIds objectEnumerator];
-        NSLog(@"Top Stories: %@", [self topStoryIds]);
-        [self processStoryIdsWithCompletion:completionHandler];
-    }
-    failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Top Stories"
-                                                            message:[error localizedDescription]
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:nil];
-        [alertView show];
-    }];
-    
-    [operation start];
-}
-
-- (void)processStoryIdsWithCompletion:(completion_t)completionHandler
-{
-    NSString *storyId = [self.storyIdEnum nextObject];
-    if (storyId != nil)
-    {
-        NSString *urlString = [NSString stringWithFormat:@"https://hacker-news.firebaseio.com/v0/item/%@.json", storyId];
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url];
-        
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        operation.responseSerializer = [AFJSONResponseSerializer serializer];
-        
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-         {
-             NSDictionary *responseDict = (NSDictionary *)responseObject;
-             [self.topStories addObject:[responseDict objectForKey:@"title"]];
-             NSLog(@"Title: %@", [responseDict objectForKey:@"title"]);
-             
-             [self processStoryIdsWithCompletion:completionHandler];
-         }
-        failure:^(AFHTTPRequestOperation *operation, NSError *error)
-         {
-             NSLog(@"Failed to get story!");
-         }];
-        [operation start];
-    }
-    else
-    {
-        completionHandler(nil);
-    }
 }
 
 

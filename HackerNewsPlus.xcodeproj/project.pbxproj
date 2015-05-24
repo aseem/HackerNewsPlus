@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1439C10D77A35D1539FB4D06 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BAF961EE912DB029CA3253 /* libPods.a */; };
+		901879411B1145C8004EB3C8 /* HNPNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 901879401B1145C8004EB3C8 /* HNPNetworkManager.m */; };
 		903FC23A1B082837004E4750 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC2391B082837004E4750 /* main.m */; };
 		903FC23D1B082837004E4750 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 903FC23C1B082837004E4750 /* AppDelegate.m */; };
 		903FC2431B082837004E4750 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 903FC2411B082837004E4750 /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		0509493A1E83E19C764E8BCE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9018793F1B1145C8004EB3C8 /* HNPNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPNetworkManager.h; path = Network/HNPNetworkManager.h; sourceTree = "<group>"; };
+		901879401B1145C8004EB3C8 /* HNPNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPNetworkManager.m; path = Network/HNPNetworkManager.m; sourceTree = "<group>"; };
 		903FC2341B082837004E4750 /* HackerNewsPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNewsPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		903FC2381B082837004E4750 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		903FC2391B082837004E4750 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +93,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9018793E1B11456C004EB3C8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9018793F1B1145C8004EB3C8 /* HNPNetworkManager.h */,
+				901879401B1145C8004EB3C8 /* HNPNetworkManager.m */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
 		903FC22B1B082837004E4750 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +125,7 @@
 		903FC2361B082837004E4750 /* HackerNewsPlus */ = {
 			isa = PBXGroup;
 			children = (
+				9018793E1B11456C004EB3C8 /* Network */,
 				909F57441B090050005984BB /* Model */,
 				903FC25D1B0829CE004E4750 /* Views */,
 				903FC2621B082B06004E4750 /* Controllers */,
@@ -317,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				903FC2691B082C89004E4750 /* HNPStoryTableViewCell.m in Sources */,
+				901879411B1145C8004EB3C8 /* HNPNetworkManager.m in Sources */,
 				903FC23D1B082837004E4750 /* AppDelegate.m in Sources */,
 				903FC2651B082B51004E4750 /* HNPMainTableViewController.m in Sources */,
 				909F57471B09008F005984BB /* HNPItem.m in Sources */,
