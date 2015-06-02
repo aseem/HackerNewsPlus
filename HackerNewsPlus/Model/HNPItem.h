@@ -14,11 +14,12 @@
 
 typedef enum HNPItemType
 {
-    HNPItemTypeJob = 0,
-    HNPItemTypeStory = 1,
-    HNPItemTypeComment = 2,
-    HNPItemTypePoll = 3,
-    HNPItemTypePollOpt = 4
+    HNPItemTypeUnknown = 0,
+    HNPItemTypeJob = 1,
+    HNPItemTypeStory = 2,
+    HNPItemTypeComment = 3,
+    HNPItemTypePoll = 4,
+    HNPItemTypePollOpt = 5
 } HNPItemType;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +48,7 @@ typedef enum HNPItemType
 /**
  *  The username of the item's author
  */
-@property (nonatomic, copy) NSString *by;
+@property (nonatomic, copy) NSString<Optional> *by;
 
 /**
  *  Creation date of the item
@@ -99,19 +100,5 @@ typedef enum HNPItemType
  *  In the case of stories or polls, the total comment count
  */
 @property (nonatomic, copy) NSNumber *descendants;
-
-
-////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Public Methods
-
-/**
- *  The compiler will return an error if init is called
- *
- *  @return error
- */
-- (id) init __attribute__((unavailable("Must use initWithData: instead.")));
-
-
-- (instancetype) initWithData:(NSData *)data;
 
 @end

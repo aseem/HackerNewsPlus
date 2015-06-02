@@ -7,6 +7,7 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import "HNPItem.h"
 #import "HNPNetworkManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -98,8 +99,10 @@
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              NSDictionary *responseDict = (NSDictionary *)responseObject;
-             [self.topStories addObject:[responseDict objectForKey:@"title"]];
-             NSLog(@"Title: %@", [responseDict objectForKey:@"title"]);
+             NSError *error = nil;
+             HNPItem *item = [[HNPItem alloc] initWithDictionary:responseDict error:&error];
+             [self.topStories addObject:item];
+             NSLog(@"Title: %@", [item title]);
              
              [self processStoryIdsWithCompletion:completionBlock];
          }
