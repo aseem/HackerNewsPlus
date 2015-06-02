@@ -7,6 +7,7 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
+#import "HNPItem.h"
 #import "HNPMainTableViewController.h"
 #import "HNPNetworkManager.h"
 #import "HNPStoryTableViewCell.h"
@@ -79,9 +80,9 @@ typedef void (^completion_t)(id result, NSError *error);
         storyCell = [nib objectAtIndex:0];
     }
     
-    storyCell.titleLabel.text = self.topStories[indexPath.row];
-    storyCell.scoreLabel.text = @"100";
-    storyCell.numCommentsLabel.text = @"200";
+    storyCell.titleLabel.text = [self.topStories[indexPath.row] title];
+    storyCell.scoreLabel.text = [[self.topStories[indexPath.row] score] stringValue];
+    storyCell.numCommentsLabel.text = [[self.topStories[indexPath.row] descendants] stringValue];
 
     return storyCell;
 }
