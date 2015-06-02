@@ -23,7 +23,8 @@ typedef void (^completion_t)(id result, NSError *error);
 
 @implementation HNPMainTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // load the data
@@ -46,7 +47,8 @@ typedef void (^completion_t)(id result, NSError *error);
     
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
