@@ -11,6 +11,7 @@
 #import "HNPMainTableViewController.h"
 #import "HNPNetworkManager.h"
 #import "HNPStoryTableViewCell.h"
+#import "HNPWebViewController.h"
 
 typedef void (^completion_t)(id result, NSError *error);
 
@@ -19,7 +20,7 @@ typedef void (^completion_t)(id result, NSError *error);
 @property (strong, nonatomic) NSArray *topStoryIds;
 @property (strong, nonatomic) NSEnumerator *storyIdEnum;
 @property (strong, nonatomic) NSMutableArray *topStories;
-
+@property UIActivityIndicatorView *spinner;
 @end
 
 @implementation HNPMainTableViewController
@@ -31,21 +32,15 @@ typedef void (^completion_t)(id result, NSError *error);
     // load the data
     if (self.topStories == nil)
         self.topStories = [[NSMutableArray alloc] init];
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.color = [UIColor blueColor];
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
     
-    [[HNPNetworkManager sharedManager] updateTopStoriesWithCompletion:^(id result, NSError *error)
-     {
-         self.topStories = (NSMutableArray *)result;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [spinner stopAnimating];
-             [self.tableView reloadData];
-         });
-        
-     }];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    self.navigationItem.rightBarButtonItem = refreshButton;
     
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.color = [UIColor blueColor];
+    [self.spinner setCenter:self.view.center];
+    [self.view addSubview:self.spinner];
+    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +49,33 @@ typedef void (^completion_t)(id result, NSError *error);
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)refresh
+{
+    [self.spinner startAnimating];
+    [[HNPNetworkManager sharedManager] updateTopStoriesWithCompletion:^(id result, NSError *error)
+     {
+         self.topStories = (NSMutableArray *)result;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.spinner stopAnimating];
+             [self.tableView reloadData];
+         });
+         
+     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    HNPWebViewController *webViewController = segue.destinationViewController;
+    NSURL *url = [self.selectedItem url];;
+    
+    if ([self.selectedItem type] != HNPItemTypeStory || [url absoluteString] == nil || [[url absoluteString] length] == 0)
+    {
+        url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/item?id=%@", [self.selectedItem id]]];
+    }
+        
+    [webViewController setUrl:url];
+}
 
 #pragma mark - Table view data source
 
@@ -87,49 +109,12 @@ typedef void (^completion_t)(id result, NSError *error);
     return storyCell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.selectedItem = [self.topStories objectAtIndex:indexPath.row];
+    NSLog(@"Selected Item: %@", self.selectedItem);
+    [self performSegueWithIdentifier:@"showWebView" sender:self];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -57,6 +57,7 @@
 
 - (void)updateTopStoriesWithCompletion:(HNPNetworkCompletionBlock)completionBlock
 {
+    [self.topStories removeAllObjects];
     NSString *hnUrlString = @"https://hacker-news.firebaseio.com/v0/topstories.json";
     NSURL *url = [NSURL URLWithString:hnUrlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
