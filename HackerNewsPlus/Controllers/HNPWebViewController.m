@@ -10,6 +10,8 @@
 
 @interface HNPWebViewController ()
 
+@property UIActivityIndicatorView *spinner;
+
 @end
 
 @implementation HNPWebViewController
@@ -19,10 +21,16 @@
     [super viewDidLoad];
     self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
+    
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.color = [UIColor blueColor];
+    [self.spinner setCenter:self.view.center];
+    [self.view addSubview:self.spinner];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.spinner startAnimating];
     [self loadUrl];
 }
 
@@ -40,6 +48,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    [self.spinner stopAnimating];
     CGSize contentSize = self.webView.scrollView.contentSize;
     CGSize viewSize = self.view.bounds.size;
     
