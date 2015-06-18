@@ -18,6 +18,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DMw-31-IYR" id="OYa-YY-zFr">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="lp4-vC-r7D" kind="show" identifier="showWebView" id="h4D-3w-gD5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -30,6 +33,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPH-3M-ec9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6" y="697.5"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="PKN-QU-7KK">
+            <objects>
+                <viewController id="lp4-vC-r7D" customClass="HNPWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iES-yC-qTn"/>
+                        <viewControllerLayoutGuide type="bottom" id="E9M-xr-S3q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zHS-RY-H5n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Atl-sd-z2j">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="736"/>
+                                </variation>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Atl-sd-z2j" id="Ksp-mq-dLs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bIV-Ka-buj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="762" y="697.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mBP-Z9-ywK">

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class HNPItem;
 
 @interface HNPMainTableViewController : UITableViewController
+
+@property (nonatomic) HNPItem *selectedItem;
 
 @end
