@@ -67,16 +67,14 @@ typedef void (^completion_t)(id result, NSError *error);
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     HNPWebViewController *webViewController = segue.destinationViewController;
-    if ([self.selectedItem type] == HNPItemTypeJob)
-    {
-        NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/item?id=%@", [self.selectedItem id]]];
-        [webViewController setUrl:url];
-    }
-    else
-    {
-        [webViewController setUrl:[self.selectedItem url]];
-    }
+    NSURL *url = [self.selectedItem url];;
     
+    if ([self.selectedItem type] != HNPItemTypeStory || [url absoluteString] == nil || [[url absoluteString] length] == 0)
+    {
+        url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"https://news.ycombinator.com/item?id=%@", [self.selectedItem id]]];
+    }
+        
+    [webViewController setUrl:url];
 }
 
 #pragma mark - Table view data source

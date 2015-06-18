@@ -18,6 +18,7 @@
 {
     [super viewDidLoad];
     self.webView.delegate = self;
+    self.webView.scalesPageToFit = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -46,7 +47,7 @@
     
     self.webView.scrollView.minimumZoomScale = rw;
     self.webView.scrollView.maximumZoomScale = rw;
-    self.webView.scrollView.zoomScale = rw;
+    self.webView.scrollView.zoomScale = rw; 
 }
 
 @end
