@@ -17,8 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.webView.scalesPageToFit = YES;
-    self.webView.contentMode = UIViewContentModeScaleAspectFit;
+    self.webView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -33,10 +32,21 @@
 
 - (void)loadUrl
 {
+    NSLog(@"Loading URL: %@", [self.url absoluteString]);
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url];
     [self.webView loadRequest:urlRequest];
 }
 
-
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    CGSize contentSize = self.webView.scrollView.contentSize;
+    CGSize viewSize = self.view.bounds.size;
+    
+    float rw = viewSize.width / contentSize.width;
+    
+    self.webView.scrollView.minimumZoomScale = rw;
+    self.webView.scrollView.maximumZoomScale = rw;
+    self.webView.scrollView.zoomScale = rw;
+}
 
 @end

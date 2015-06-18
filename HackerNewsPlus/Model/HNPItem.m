@@ -24,8 +24,9 @@
 // handle enum conversion
 - (void)setTypeWithNSString:(NSString *)type
 {
+    NSLog(@"TYPE: %@", type);
     _type = HNPItemTypeUnknown;
-    if ([type isEqualToString:@"job"]) _type = HNPItemTypeStory;
+    if ([type isEqualToString:@"job"]) _type = HNPItemTypeJob;
     if ([type isEqualToString:@"story"]) _type = HNPItemTypeStory;
     if ([type isEqualToString:@"comment"]) _type = HNPItemTypeComment;
     if ([type isEqualToString:@"poll"]) _type = HNPItemTypePoll;

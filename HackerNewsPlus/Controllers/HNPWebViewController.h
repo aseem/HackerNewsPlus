@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HNPWebViewController : UIViewController
+@interface HNPWebViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, copy) NSURL *url;
