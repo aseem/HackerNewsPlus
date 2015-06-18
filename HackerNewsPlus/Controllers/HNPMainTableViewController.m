@@ -19,7 +19,7 @@ typedef void (^completion_t)(id result, NSError *error);
 @property (strong, nonatomic) NSArray *topStoryIds;
 @property (strong, nonatomic) NSEnumerator *storyIdEnum;
 @property (strong, nonatomic) NSMutableArray *topStories;
-
+@property UIActivityIndicatorView *spinner;
 @end
 
 @implementation HNPMainTableViewController
@@ -31,21 +31,15 @@ typedef void (^completion_t)(id result, NSError *error);
     // load the data
     if (self.topStories == nil)
         self.topStories = [[NSMutableArray alloc] init];
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.color = [UIColor blueColor];
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
     
-    [[HNPNetworkManager sharedManager] updateTopStoriesWithCompletion:^(id result, NSError *error)
-     {
-         self.topStories = (NSMutableArray *)result;
-         dispatch_async(dispatch_get_main_queue(), ^{
-             [spinner stopAnimating];
-             [self.tableView reloadData];
-         });
-        
-     }];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    self.navigationItem.rightBarButtonItem = refreshButton;
     
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.color = [UIColor blueColor];
+    [self.spinner setCenter:self.view.center];
+    [self.view addSubview:self.spinner];
+    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,6 +48,20 @@ typedef void (^completion_t)(id result, NSError *error);
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)refresh
+{
+    [self.spinner startAnimating];
+    [[HNPNetworkManager sharedManager] updateTopStoriesWithCompletion:^(id result, NSError *error)
+     {
+         self.topStories = (NSMutableArray *)result;
+         dispatch_async(dispatch_get_main_queue(), ^{
+             [self.spinner stopAnimating];
+             [self.tableView reloadData];
+         });
+         
+     }];
+}
 
 #pragma mark - Table view data source
 
